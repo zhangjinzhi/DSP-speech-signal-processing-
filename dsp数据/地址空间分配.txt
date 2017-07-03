@@ -1,0 +1,66 @@
+  /*C6416dsk.cmd  Linker command file*/
+
+  MEMORY
+  {
+    IVECS:    org=0h,     len=0x220
+    IRAM:     org=0x00000220, len=0x01000000 /*internal memory*/
+    SDRAM:    org=0x80000000, len=0x00500000 /*external memory*/
+	SDRAM12:  org=0x80500000, len=0x00500000 /*buffer1*/
+
+	SDRAM13:  org=0x80A00000, len=0x00500000
+	SDRAM14:  org=0x80F00000, len=0x00500000 /*buffer3*/
+
+	SDRAM15:  org=0x81400000, len=0x00500000 /*buffer4*/
+	SDRAM16:  org=0x81900000, len=0x00500000 /*buffer5*/
+	SDRAM17:  org=0x81E00000, len=0x00500000 /*buffer6*/
+	SDRAM18:  org=0x82300000, len=0x00500000 /*buffer7*/
+				  
+    SDRAM1:   org=0x82800000, len=0x00100000 /*external memory*/
+    SDRAM2:   org=0x82900000, len=0x00100000 /*external memory*/
+    SDRAM3:   org=0x82A00000, len=0x00100000 /*external memory*/
+    SDRAM4:   org=0x82B00000, len=0x00100000 /*external memory*/
+    SDRAM5:   org=0x82C00000, len=0x00100000 /*external memory*/
+    SDRAM6:   org=0x82D00000, len=0x00100000 /*external memory*/
+    SDRAM7:   org=0x82E00000, len=0x00100000 /*external memory*/
+    SDRAM8:   org=0x82F00000, len=0x00100000 /*external memory*/
+
+    SDRAM9:   org=0x83000000, len=0x00500000 /*external memory*/
+    SDRAM10:  org=0x83600000, len=0x00500000 /*external memory*/
+    SDRAM11:  org=0x83B00000, len=0x00500000 /*external memory*/
+    FLASH:    org=0x90000000, len=0x00020000 /*flash memory*/ 
+                   
+  }
+
+  SECTIONS
+  {
+    .EXT_RAM  :> SDRAM
+    .EXT_RAM1 :> SDRAM1
+    .EXT_RAM2 :> SDRAM2
+    .EXT_RAM3 :> SDRAM3
+    .EXT_RAM4 :> SDRAM4
+    .EXT_RAM5 :> SDRAM5
+    .EXT_RAM6 :> SDRAM6
+    .EXT_RAM7 :> SDRAM7
+    .EXT_RAM8 :> SDRAM8
+    .EXT_RAM9 :> SDRAM9
+    .EXT_RAM10 :> SDRAM10
+    .EXT_RAM11 :> SDRAM11
+    .EXT_RAM12 :> SDRAM12
+    .EXT_RAM13 :> SDRAM13
+    .EXT_RAM14 :> SDRAM14
+	    .EXT_RAM15 :> SDRAM15
+	    .EXT_RAM16 :> SDRAM16
+		.EXT_RAM17 :> SDRAM17
+		.EXT_RAM18 :> SDRAM18
+    .vectors :> IVECS /*in vector file*/
+    .text    :> IRAM  /*Created by C Compiler*/
+    .bss     :> IRAM
+    .cinit   :> IRAM
+    .stack   :> IRAM
+    .sysmem  :> IRAM
+    .const   :> IRAM
+    .switch  :> IRAM
+    .far     :> IRAM
+    .cio     :> IRAM
+    .csldata :> IRAM
+  }

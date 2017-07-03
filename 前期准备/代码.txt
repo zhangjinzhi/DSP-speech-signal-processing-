@@ -1,0 +1,85 @@
+/*C6416dsk.cmd  Linker command file*/
+
+MEMORY
+{
+  IVECS:    org=0h,  		len=0x220
+  IRAM:		org=0x00000220,	len=0x0002FDE0 /*internal memory*/
+  SDRAM:	org=0x80000000, len=0x01000000 /*external memory*/
+  SDRAM1:   org=0x81100000, len=0x00100000 /*external memory*/
+  SDRAM2:   org=0x81200000, len=0x00100000 /*external memory*/
+  SDRAM3:   org=0x81300000, len=0x00100000 /*external memory*/
+  SDRAM4:   org=0x81400000, len=0x00100000 /*external memory*/
+  SDRAM5:   org=0x81500000, len=0x00100000 /*external memory*/
+  SDRAM6:   org=0x81600000, len=0x00100000 /*external memory*/
+  SDRAM7:   org=0x81700000, len=0x00100000 /*external memory*/
+  SDRAM8:   org=0x81800000, len=0x00100000 /*external memory*/
+  SDRAM9:   org=0x81900000, len=0x00100000 /*external memory*/
+  SDRAM10:  org=0x81A00000, len=0x00100000 /*external memory*/
+  SDRAM11:  org=0x81B00000, len=0x00100000 /*external memory*/
+  SDRAM12:  org=0x82000000, len=0x01000000 /*external memory*/
+  SDRAM13:  org=0x83000000, len=0x01000000 /*external memory*/
+  SDRAM14:  org=0x84000000, len=0x01000000 /*external memory*/
+  FLASH:	org=0x90000000, len=0x00020000 /*flash memory*/ 
+                 
+}
+
+SECTIONS
+{
+  .EXT_RAM :> SDRAM
+  .EXT_RAM1 :> SDRAM1
+  .EXT_RAM2 :> SDRAM2
+  .EXT_RAM3 :> SDRAM3
+  .EXT_RAM4 :> SDRAM4
+  .EXT_RAM5 :> SDRAM5
+  .EXT_RAM6 :> SDRAM6
+  .EXT_RAM7 :> SDRAM7
+  .EXT_RAM8 :> SDRAM8
+  .EXT_RAM9 :> SDRAM9
+  .EXT_RAM10 :> SDRAM10
+  .EXT_RAM11 :> SDRAM11
+  .EXT_RAM12 :> SDRAM12
+  .EXT_RAM13 :> SDRAM13
+  .EXT_RAM14 :> SDRAM14
+  .vectors :> IVECS	/*in vector file*/
+  .text    :> IRAM	/*Created by C Compiler*/
+  .bss     :> IRAM
+  .cinit   :> IRAM
+  .stack   :> IRAM
+  .sysmem  :> IRAM
+  .const   :> IRAM
+  .switch  :> IRAM
+  .far     :> IRAM
+  .cio     :> IRAM
+  .csldata :> IRAM
+}
+
+
+
+
+#pragma DATA_SECTION(buffer,".EXT_RAM")
+
+#pragma DATA_SECTION(work_rex,".EXT_RAM1")
+#pragma DATA_SECTION(work_imx,".EXT_RAM2")
+#pragma DATA_SECTION(proc_mag,".EXT_RAM3")
+#pragma DATA_SECTION(proc_freq,".EXT_RAM4")
+#pragma DATA_SECTION(syn_mag,".EXT_RAM5")
+#pragma DATA_SECTION(syn_freq,".EXT_RAM6")
+#pragma DATA_SECTION(sum_phase,".EXT_RAM7")
+#pragma DATA_SECTION(last_phase,".EXT_RAM8")
+#pragma DATA_SECTION(out_accum,".EXT_RAM9")
+#pragma DATA_SECTION(in_fifo,".EXT_RAM13")
+#pragma DATA_SECTION(out_fifo,".EXT_RAM14")
+
+
+
+	float work_rex[MAX_BUF_SIZE];
+	float work_imx[MAX_BUF_SIZE];
+	float proc_mag[MAX_BUF_SIZE / 2];
+	float proc_freq[MAX_BUF_SIZE / 2];
+	float syn_mag[MAX_BUF_SIZE / 2];
+	float syn_freq[MAX_BUF_SIZE / 2];
+	static float sum_phase[MAX_BUF_SIZE / 2];
+	static float last_phase[MAX_BUF_SIZE / 2];
+	static float out_accum[2 * MAX_BUF_SIZE];
+	static float in_fifo[MAX_BUF_SIZE];
+	static float out_fifo[MAX_BUF_SIZE];
